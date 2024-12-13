@@ -1,0 +1,43 @@
+security:
+    # Rejestracja i hashowanie haseł
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    # Provider użytkowników
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            lazy: true
+            provider: app_user_provider
+            form_login:
+                login_path: app_login        # Ścieżka formularza logowania
+                check_path: app_login        # Ścieżka, gdzie Symfony sprawdza dane logowania
+                default_target_path: app_panel  # Przekierowanie po zalogowaniu
+            logout:
+                path: app_logout             # Ścieżka do wylogowania
+                target: app_login            # Przekierowanie po wylogowaniu
+
+    access_control:
+        - { path: ^/panel, roles: ROLE_USER }   # Dostęp do panelu tylko dla zalogowanych użytkowników
+        - { path: ^/register, roles: PUBLIC_ACCESS } # Rejestracja dostępna publicznie
+        - { path: ^/login, roles: PUBLIC_ACCESS }    # Logowanie dostępne publicznie
+        - { path: ^/reset-password/confirm, roles: PUBLIC_ACCESS }
+
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4
+                time_cost: 3
+                memory_cost: 10
+

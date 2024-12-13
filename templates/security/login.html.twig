@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Logowanie</h1>
+	{% if error is defined and error %}
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+    <form method="post">
+        <label for="username">E-mail:</label>
+        <input type="email" name="_username" id="username" required>
+        
+        <label for="password">Hasło:</label>
+        <input type="password" name="_password" id="password" required>
+
+        <button type="submit" class="btn btn-primary">Zaloguj</button>
+    </form>
+{% endblock %}
+

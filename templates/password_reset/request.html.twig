@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Resetowanie hasła</h1>
+    <form method="POST">
+        <label for="email">Podaj swój e-mail:</label>
+        <input type="email" name="email" id="email" required>
+        <button type="submit">Wyślij link</button>
+    </form>
+{% endblock %}
+
