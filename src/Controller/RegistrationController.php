@@ -26,16 +26,35 @@ class RegistrationController extends AbstractController
 
         // Formularz rejestracji bezpośrednio przez createForm
         $form = $this->createFormBuilder($user)
-            ->add('name', TextType::class, ['label' => 'Imię'])
-            ->add('email', EmailType::class, ['label' => 'E-mail'])
-            ->add('password', PasswordType::class, ['label' => 'Hasło'])
+            ->add('name', TextType::class, [
+                'label' => ' ',
+                'attr'=> [
+                    'class'=>'form-control',
+                    'placeholder'=>'Imię'
+                ]
+            ])
+            ->add('email', EmailType::class, [
+                'label' => ' ',
+                'attr'=> [
+                    'class'=>'form-control',
+                    'placeholder'=>'Email'
+                ]
+            ])
+            ->add('password', PasswordType::class, [
+                'label' => ' ',
+                'attr'=> [
+                    'class'=>'form-control',
+                    'placeholder' => 'Hasło'
+                ]
+            ])
             ->add('roles', ChoiceType::class, [
-                'label' => 'Rola',
+                'label' => 'Rola: ',
                 'choices' => [
                     'Klient' => 'ROLE_CLIENT',
                     'Trener' => 'ROLE_TRAINER',
                     'Administrator' => 'ROLE_ADMIN',
                 ],
+                'attr'=> ['class'=>'form-control input-lg'],
                 'multiple' => false,
                 'expanded' => false,
                 'mapped' => false, // Wyłącz automatyczne mapowanie

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="welcome-container">
+        <div class="image-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/mh-trainer-2-1533576998.png?resize=640:*" alt="Fitness Coach">
+        </div>
+        <h1>Welcome to FitTrack</h1>
+        <p>Your personal fitness tracking companion.</p>
+        <div>
+            <a href="/login" class="btn btn-primary btn-custom">Log In</a>
+            <a href="{{ path('app_register') }}" class="btn btn-secondary btn-custom">Register</a>
+        </div>
+    </div>
+{% endblock %}
